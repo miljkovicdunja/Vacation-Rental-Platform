@@ -1,0 +1,37 @@
+<header id="menidiv">
+  <h1 style="text-align: center;">Dobrodosli na sajt za iznajmljivanje vikendica!</h1>
+</header>
+
+<div id="mydiv" >
+<h3>Prijava</h3>
+<table align="center">
+  <tr>
+    <td>Korisnicko ime:</td>
+    <td><input type="text" [(ngModel)]="username"></td>
+  </tr>
+  <tr>
+    <td>Lozinka:</td>
+    <td><input type="password" [(ngModel)]="password"></td>
+  </tr>
+  <tr>
+    <td>Tip:</td>
+    <td>
+      <select [(ngModel)]="tip">
+        <option value="turista">turista</option>
+        <option value="vlasnik">vlasnik</option>
+      </select>
+    </td>
+  </tr>
+</table>
+<br>
+<span style="color: red;">{{greska}}</span> <br>
+<button (click)="login()">Prijava</button><br><br><br>
+Prijavljujete se kao administrator?
+<button (click)="loginAdministrator()">Prijavi se kao administrator</button><br>
+Zelis da promenis lozinku?
+<button (click)="promeniLozinku()">Promeni lozinku</button><br>
+Nemas nalog? <button (click)="prijaviSe()" style="border-radius: 5px;"> Registruj se</button>
+<br>
+Nastavi kao negistrovani korisnik?
+<button (click)="neregistrovani()">Nastavi kao neregistrovani</button><br>
+</div>

@@ -1,0 +1,11 @@
+
+<div id="mydiv">
+<h3>Promena lozinke</h3>
+Korisnicko ime: <input type="text" [(ngModel)]="korisnicko_ime">
+<br><br>
+Stara lozinka: <input type="password" [(ngModel)]="staraLozinka"><br><br>
+Nova lozinka: <input type="password" [(ngModel)]="novaLozinka"><br><br>
+Ponovi novu lozinku: <input type="password" [(ngModel)]="ponovljenjaNovaLozinka"><br><br>
+<span style="color: red;">{{message}}</span><br><br>
+<button (click)="sacuvajIzmene()">Sacuvaj izmene</button>
+</div>

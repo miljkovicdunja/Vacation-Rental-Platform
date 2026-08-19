@@ -1,0 +1,50 @@
+<h1 style="text-align: center; color:white; margin-top: 10%;">Neobradjene rezervacije</h1>
+@if(rezervacije.length > 0){
+    <table id="tabela">
+      <tr>
+        <th>Korisnik</th>
+        <th>Vikendica</th>
+        <th>Datum pocekta</th>
+        <th>Datum kraja</th>
+        <th>Broj odraslih</th>
+        <th>Broj dece</th>
+        <th>Zahtevi</th>
+      </tr>
+      @for(a of rezervacije; track a.idR){
+        <tr>
+            <td>{{ a.turista }}</td>
+            @for(v of vikendice; track v.idV){
+            @if(v.idV === a.idV){
+              <td>{{ v.naziv }}</td>
+            }
+          }
+          <td>{{ a.datumPocetak }}</td>
+          <td>{{ a.datumKraj }}</td>
+          <td>{{ a.brOdraslih }}</td>
+          <td>{{ a.brDece }}</td>
+          <td>{{ a.zahtevi }}</td>
+          <button style="background-color: transparent; height: 50px; color:white" (click)="prihvatiRezervaciju(a.idR)" [disabled]="disabled">Prihvati</button>
+          <button style="background-color: transparent; height: 50px; color:white" (click)="odbij(a.idR)" [disabled]="disabled">Odbaci</button>
+        </tr>
+      }
+    </table>
+}
+@else{
+    <p style="color:white">Nemate dodate rezervacije.</p>
+}
+
+@if(odbijeno){
+  <div id="mydiv">
+    <h3>Zasto odbijate rezervaciju?</h3>
+    <p style="color:white; text-align:center;">Unesi komentar:</p>
+    <textarea style="width: 80%; height: 100px; margin: 10px auto; display: block;" [(ngModel)]="komentar"></textarea>
+    <button style=" background-color: burlywood;" (click)="odbijRezervaciju()">Posalji</button>
+  </div>
+}
+
+
+<header id="menidiv">
+<h5>Meni</h5>
+<pre>
+<button (click)="vidiProfil()" style="background-color: bisque; width: 100px;">Profil</button>     <button (click)="vidiVikendice()" style="background-color: bisque; width: 100px;">Vikendice</button>         <button style="background-color: bisque; width: 100px;" (click)="vidiRezervacije()">Rezervacije</button>           <button (click)="odjaviSe()" style="background-color:bisque; width: 100px;">Odjava</button>
+</pre>

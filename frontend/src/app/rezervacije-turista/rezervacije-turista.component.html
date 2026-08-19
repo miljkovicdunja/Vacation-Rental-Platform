@@ -1,0 +1,42 @@
+<h1 style="text-align: center; color:white; margin-top: 10%;">Moje rezervacije</h1>
+@if(rezervacije.length > 0){
+    <table id="tabela">
+      <tr>
+        <th>Datum pocekta</th>
+        <th>Datum kraja</th>
+        <th>Naziv vikendice</th>
+        <th>Mesto vikendice</th>
+        <th>Akcija</th>
+      </tr>
+      @for(a of rezervacije; track a.idR){
+        <tr>
+          <td>{{ a.datumPocetak }}</td>
+          <td>{{ a.datumKraj }}</td>
+          @for(v of vikendice; track v.idV){
+            @if(v.idV === a.idV){
+              <td>{{ v.naziv }}</td>
+              <td>{{ v.mesto }}</td>
+            }
+          }
+          <td>
+            @if(canShowButton(a)){
+              <button class="btn-secondary" (click)="otkazi(a)">Otkazi</button>
+            }
+          </td>
+        </tr>
+      }
+    </table>
+}
+@else{
+    <p style="color:white">Nemate dodate rezervacije.</p>
+}
+
+
+<button style="margin-left:45%;background-color: burlywood;" (click)="dodajNovuRezervaciju()">Dodaj rezervaciju</button>
+
+<header id="menidiv">
+<h5>Meni</h5>
+<pre>
+<button (click)="vidiProfil()" style="background-color: bisque; width: 100px;">Profil</button>     <button (click)="vidiVikendice()" style="background-color: bisque; width: 100px;">Vikendice</button>         <button (click)="vidiRezervacije()" style="background-color: bisque; width: 100px;">Rezervacije</button>           <button (click)="odjaviSe()" style="background-color:bisque; width: 100px;">Odjava</button>
+</pre>
+</header>

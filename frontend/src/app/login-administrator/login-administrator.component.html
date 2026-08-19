@@ -1,0 +1,20 @@
+<header>
+    <button style="border-radius:50%; width:40px; height:40px; background-color: bisque; color:black" (click)="nazad()">←</button>
+</header>
+
+<div id="mydiv" >
+<h3>Prijava</h3>
+<table align="center">
+  <tr>
+    <td>Korisnicko ime:</td>
+    <td><input type="text" [(ngModel)]="username"></td>
+  </tr>
+  <tr>
+    <td>Lozinka:</td>
+    <td><input type="password" [(ngModel)]="password"></td>
+  </tr>
+  <tr>
+</table>
+<br>
+<span style="color: red;">{{greska}}</span> <br>
+<button (click)="login()">Prijava</button><br><br><br>

@@ -1,0 +1,208 @@
+<div id="mydiv" ><br><h3>Aktuelne vikendice</h3>
+<h5>Sortiraj:</h5>
+<select [(ngModel)]="selektovanaOpcija">
+  <option value="rastuceNaziv">Sortiraj po nazivu rastuce</option>
+  <option value="opadajuceNaziv">Sortiraj po nazivu opadajuce</option>
+    <option value="rastuceMesto">Sortiraj po mestu rastuce</option>
+  <option value="opadajuceMesto">Sortiraj po mestu opadajuce</option>
+</select>
+<h5>Pretraga</h5>       
+Naziv :<input type="text" [(ngModel)]="naziv"> Mesto: <input type="text" [(ngModel)]="mesto">
+<br><br>
+@if(vikendice.length > 0){
+    
+@if(naziv!="" && mesto!=""){
+    <p style="color:white">Rezultati pretrage za naziv: "{{naziv}}" i mesto: "{{mesto}}"</p>
+    <table id="tabela">
+      <tr>
+        <th>Naziv</th>
+        <th>Mesto</th>
+        <th>Usluge</th>
+        <th>Cena prolece</th>
+        <th>Cena leto</th>
+        <th>Cena jesen</th>
+        <th>Cena zima</th>
+        <th>Kontakt telefon</th>
+        <th>Koordinate</th>
+        <th>Vlasnik</th>
+        <th>Zvezdice</th>
+      </tr>
+      @for(a of vikendice; track a.idV){
+        @if(a.naziv.includes(naziv) && a.mesto.includes(mesto)){
+          <tr>
+              <td>{{a.naziv}}
+                <a routerLink="/infoVikendica" routerLinkActive="active" (click)="sacuvaj(a)">Detalji</a>
+              </td>
+              <td>{{a.mesto}}</td>
+              <td>{{a.usluge}}</td>
+              <td>{{a.cenovnikProlece}}</td>
+              <td>{{a.cenovnikLeto}}</td>
+              <td>{{a.cenovnikJesen}}</td>
+              <td>{{a.cenovnikZima}}</td>
+              <td>{{a.telefon}}</td>
+              <td>{{a.koordinate}}</td>
+              <td>{{a.vlasnik}}</td>
+              <td>
+                <div class="zvezdice">
+                    <ng-container *ngFor="let i of [1,2,3,4,5]">
+                        <span class="zvezda">
+                        <span class="unutra" [ngStyle]="{'width': brojZvezdica(i, a.ocena)}">★</span>
+                        ★
+                    </span>
+                </ng-container>
+            </div>{{a.ocena.toFixed(1)}}
+        </td>
+          </tr>
+        }
+      }
+      </table>
+}
+@else if(naziv!=""){
+  <p style="color:white">Rezultati pretrage za naziv: "{{naziv}}"</p>
+  <table  id="tabela">
+    <tr>
+      <th>Naziv</th>
+      <th>Mesto</th>
+      <th>Usluge</th>
+      <th>Cena prolece</th>
+      <th>Cena leto</th>
+      <th>Cena jesen</th>
+      <th>Cena zima</th>
+      <th>Kontakt telefon</th>
+      <th>Koordinate</th>
+      <th>Vlasnik</th>
+    </tr>
+    @for(a of vikendice; track a.idV){
+      @if(a.naziv.includes(naziv)){
+        <tr>
+            <td>{{a.naziv}}
+                <a routerLink="/infoVikendica" routerLinkActive="active" (click)="sacuvaj(a)">Detalji</a>
+            </td>
+            <td>{{a.mesto}}</td>
+            <td>{{a.usluge}}</td>
+            <td>{{a.cenovnikProlece}}</td>
+            <td>{{a.cenovnikLeto}}</td>
+            <td>{{a.cenovnikJesen}}</td>
+            <td>{{a.cenovnikZima}}</td>
+            <td>{{a.telefon}}</td>
+            <td>{{a.koordinate}}</td>
+            <td>{{a.vlasnik}}</td>
+            <td>
+            <div class="zvezdice">
+                <ng-container *ngFor="let i of [1,2,3,4,5]">
+                 <span class="zvezda">
+                <span class="unutra" [ngStyle]="{'width': brojZvezdica(i, a.ocena)}">★</span>
+                ★
+                </span>
+                </ng-container>
+            </div>{{a.ocena.toFixed(1)}}
+        </td>
+        </tr>
+      }
+    }
+    </table>
+}
+@else if(mesto!=""){
+  <p style="color:white">Rezultati pretrage za mesto: "{{mesto}}"</p>
+  <table  id="tabela">
+    <tr>
+      <th>Naziv</th>
+      <th>Mesto</th>
+      <th>Usluge</th>
+      <th>Cena prolece</th>
+      <th>Cena leto</th>
+      <th>Cena jesen</th>
+      <th>Cena zima</th>
+      <th>Kontakt telefon</th>
+      <th>Koordinate</th>
+      <th>Vlasnik</th>
+    </tr>
+    @for(a of vikendice; track a.idV){
+      @if(a.mesto.includes(mesto)){
+        <tr>
+            <td>{{a.naziv}}
+                <a routerLink="/infoVikendica" routerLinkActive="active"  (click)="sacuvaj(a)">Detalji</a>
+            </td>
+            <td>{{a.mesto}}</td>
+            <td>{{a.usluge}}</td>
+            <td>{{a.cenovnikProlece}}</td>
+            <td>{{a.cenovnikLeto}}</td>
+            <td>{{a.cenovnikJesen}}</td>
+            <td>{{a.cenovnikZima}}</td>
+            <td>{{a.telefon}}</td>
+            <td>{{a.koordinate}}</td>
+            <td>{{a.vlasnik}}</td>
+            <td>
+            <div class="zvezdice">
+                <ng-container *ngFor="let i of [1,2,3,4,5]">
+                 <span class="zvezda">
+                <span class="unutra" [ngStyle]="{'width': brojZvezdica(i, a.ocena)}">★</span>
+                ★
+                </span>
+                </ng-container>
+            </div>{{a.ocena.toFixed(1)}}
+        </td>
+        </tr>
+      }
+    }
+    </table>
+}
+@else if(naziv=="" && mesto==""){
+  <p style="color:white">Svi rezultati:</p> 
+<table id="tabela">
+  <tr>
+    <th>Naziv</th>
+    <th>Mesto</th>
+    <th>Usluge</th>
+    <th>Cena prolece</th>
+    <th>Cena leto</th>
+    <th>Cena jesen</th>
+    <th>Cena zima</th>
+    <th>Kontakt telefon</th>
+    <th>Koordinate</th>
+    <th>Vlasnik</th>
+    <th>Zvezdice</th>
+  </tr>
+  @for(a of vikendice; track a.idV){
+    <tr>
+        <td>{{a.naziv}}
+            <a routerLink="/infoVikendica" routerLinkActive="active" (click)="sacuvaj(a)">Detalji</a>
+        </td>
+        <td>{{a.mesto}}</td>
+        <td>{{a.usluge}}</td>
+        <td>{{a.cenovnikProlece}}</td>
+        <td>{{a.cenovnikLeto}}</td>
+        <td>{{a.cenovnikJesen}}</td>
+        <td>{{a.cenovnikZima}}</td>
+        <td>{{a.telefon}}</td>
+        <td>{{a.koordinate}}</td>
+        <td>{{a.vlasnik}}</td>
+        <td>
+            <div class="zvezdice">
+                <ng-container *ngFor="let i of [1,2,3,4,5]">
+                 <span class="zvezda">
+                <span class="unutra" [ngStyle]="{'width': brojZvezdica(i, a.ocena)}">★</span>
+                ★
+                </span>
+                </ng-container>
+            </div>{{a.ocena.toFixed(1)}}
+        </td>
+    </tr>
+  }
+  
+</table>
+}
+}
+@else {
+    <p>Nema vikendica.</p>
+}
+<br>
+</div>
+
+
+<header id="menidiv">
+<h5>Meni</h5>
+<pre>
+<button (click)="vidiProfil()" style="background-color: bisque; width: 100px;">Profil</button>     <button (click)="vidiVikendice()" style="background-color: bisque; width: 100px;">Vikendice</button>         <button (click)="vidiRezervacije()" style="background-color: bisque; width: 100px;">Rezervacije</button>           <button (click)="odjaviSe()" style="background-color:bisque; width: 100px;">Odjava</button>
+</pre>
+</header>

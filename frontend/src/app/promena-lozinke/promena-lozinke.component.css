@@ -1,0 +1,13 @@
+#mydiv{
+    position:absolute;
+    text-align: center;
+    border-radius: 50px;
+    top: 20%;
+    left: 50%;
+    width:30em;
+    height:20em;
+    margin-top: -9em; 
+    margin-left: -15em; 
+    border: 1px solid #ccc;
+    background-color: #f3f3f3;
+}

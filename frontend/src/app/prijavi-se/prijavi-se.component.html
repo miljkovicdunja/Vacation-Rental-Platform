@@ -1,0 +1,68 @@
+<header>
+    <button style="border-radius:50%; width:40px; height:40px; background-color: bisque; color:black" (click)="nazad()">←</button>
+</header>
+
+<div id="mydiv">
+    <h3>Registracija</h3>
+<table align="center">
+  <tr>
+    <td>Korisnicko ime:</td>
+    <td><input type="text" [(ngModel)]="korisnik.kor_ime"></td>
+  </tr>
+  <tr>
+    <td>Lozinka:</td>
+    <td><input type="password" [(ngModel)]="korisnik.lozinka"></td>
+  </tr>
+  <tr>
+    <td>Pol:</td>
+    <td>
+      <input type="radio" value="M" name="pol" id="M" [(ngModel)]="korisnik.pol">M
+      <input type="radio" value="Z" name="pol" id="Z" [(ngModel)]="korisnik.pol">Z
+    </td>
+  </tr>
+  <tr>
+    <td>Ime:</td>
+    <td><input type="text" [(ngModel)]="korisnik.ime"></td>
+  </tr>
+  <tr>
+    <td>Prezime:</td>
+    <td><input type="text" [(ngModel)]="korisnik.prezime"></td>
+  </tr>
+  <tr>
+    <td>Adresa:</td>
+    <td><input type="text" [(ngModel)]="korisnik.adresa"></td>
+  </tr>
+  <tr>
+    <td>Mejl:</td>
+    <td><input type="text" [(ngModel)]="korisnik.mejl"></td>
+  </tr>
+  <tr>
+    <td>Tip:</td>
+    <td>
+      <select [(ngModel)]="korisnik.tip">
+        <option value="turista">turista</option>
+        <option value="vlasnik">vlasnik</option>
+      </select>
+    </td>
+  </tr>
+   <tr>
+    <td>Kontakt telefon:</td>
+    <td><input type="text" [(ngModel)]="korisnik.kontakt_telefon" max="17"></td>
+  </tr>
+   <tr>
+    <td>Broj racuna:</td>
+    <td><img
+    *ngIf="karticaSlika"
+    [src]="karticaSlika"
+    width="25"/><input type="text" [(ngModel)]="korisnik.broj_kreditne_kartice" maxlength="19"  (input)="onInputChange($event)"></td>
+  </tr>
+  <tr>
+    <td>Dodaj sliku:(opciono)</td>
+    <td><input type="file"  (change)="onFileSelected($event)" accept="image/*"></td>
+  </tr>
+</table>
+  <br>
+  <span style="color:red">{{greska}}</span>
+  <button (click)="dodaj()">Registruj se!</button>
+
+</div>

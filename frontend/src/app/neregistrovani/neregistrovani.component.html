@@ -1,0 +1,168 @@
+<header id="menidiv">
+  <button (click)="login()" style="background-color: rgb(78, 63, 63); color:white">Prijava/registracija</button>
+</header>
+<div id="mydiv"> 
+<h2 style="text-align: center;">Dobrodosli!</h2>
+<p style="text-align: center;">Trenutno imamo ukupno {{brojVikendica}} vikendica dostupnih za iznajmljivanje.</p>
+<p style="text-align: center;">Trenutno imamo ukupno {{brojTurista}} turista i {{brojVlasnika}} vlasnika.</p>
+<p style="text-align: center;">U poslednjih 24h zabelezeno je {{brojRezervacija24h}} novih rezervacija.</p>
+<p style="text-align: center;">U poslednjih 7 dana zabelezeno je {{brojRezervacija7dana}} novih rezervacija.</p>
+<p style="text-align: center;">U poslednjih 30 dana zabelezeno je {{brojRezervacija30dana}} novih rezervacija.</p>
+<h3>Aktuelne vikendice</h3>
+<h5>Sortiraj:</h5>
+<select [(ngModel)]="selektovanaOpcija">
+  <option value="rastuceNaziv">Sortiraj po nazivu rastuce</option>
+  <option value="opadajuceNaziv">Sortiraj po nazivu opadajuce</option>
+    <option value="rastuceMesto">Sortiraj po mestu rastuce</option>
+  <option value="opadajuceMesto">Sortiraj po mestu opadajuce</option>
+</select>
+<h5>Pretraga</h5>       
+Naziv :<input type="text" [(ngModel)]="naziv"> Mesto: <input type="text" [(ngModel)]="mesto">
+<br><br>
+@if(vikendice.length > 0){
+    
+@if(naziv!="" && mesto!=""){
+    <p style="color:white">Rezultati pretrage za naziv: "{{naziv}}" i mesto: "{{mesto}}"</p>
+    <table id="tabela">
+      <tr>
+        <th>Naziv</th>
+        <th>Mesto</th>
+        <th>Usluge</th>
+        <th>Ocena</th>
+        <th>Cena prolece</th>
+        <th>Cena leto</th>
+        <th>Cena jesen</th>
+        <th>Cena zima</th>
+        <th>Kontakt telefon</th>
+        <th>Koordinate</th>
+        <th>Vlasnik</th>
+      </tr>
+      @for(a of vikendice; track a.idV){
+        @if(a.naziv.includes(naziv) && a.mesto.includes(mesto)){
+          <tr>
+              <td>{{a.naziv}}</td>
+              <td>{{a.mesto}}</td>
+              <td>{{a.usluge}}</td>
+              <td>{{a.ocena}}</td>
+              <td>{{a.cenovnikProlece}}</td>
+              <td>{{a.cenovnikLeto}}</td>
+              <td>{{a.cenovnikJesen}}</td>
+              <td>{{a.cenovnikZima}}</td>
+              <td>{{a.telefon}}</td>
+              <td>{{a.koordinate}}</td>
+              <td>{{a.vlasnik}}</td>
+          </tr>
+        }
+      }
+      </table>
+}
+@else if(naziv!=""){
+  <p style="color:white">Rezultati pretrage za naziv: "{{naziv}}"</p>
+  <table  id="tabela">
+    <tr>
+      <th>Naziv</th>
+      <th>Mesto</th>
+      <th>Usluge</th>
+      <th>Ocena</th>
+      <th>Cena prolece</th>
+      <th>Cena leto</th>
+      <th>Cena jesen</th>
+      <th>Cena zima</th>
+      <th>Kontakt telefon</th>
+      <th>Koordinate</th>
+      <th>Vlasnik</th>
+    </tr>
+    @for(a of vikendice; track a.idV){
+      @if(a.naziv.includes(naziv)){
+        <tr>
+            <td>{{a.naziv}}</td>
+            <td>{{a.mesto}}</td>
+            <td>{{a.usluge}}</td>
+            <td>{{a.ocena}}</td>
+            <td>{{a.cenovnikProlece}}</td>
+            <td>{{a.cenovnikLeto}}</td>
+            <td>{{a.cenovnikJesen}}</td>
+            <td>{{a.cenovnikZima}}</td>
+            <td>{{a.telefon}}</td>
+            <td>{{a.koordinate}}</td>
+            <td>{{a.vlasnik}}</td>
+        </tr>
+      }
+    }
+    </table>
+}
+@else if(mesto!=""){
+  <p style="color:white">Rezultati pretrage za mesto: "{{mesto}}"</p>
+  <table  id="tabela">
+    <tr>
+      <th>Naziv</th>
+      <th>Mesto</th>
+      <th>Usluge</th>
+      <th>Ocena</th>
+      <th>Cena prolece</th>
+      <th>Cena leto</th>
+      <th>Cena jesen</th>
+      <th>Cena zima</th>
+      <th>Kontakt telefon</th>
+      <th>Koordinate</th>
+      <th>Vlasnik</th>
+    </tr>
+    @for(a of vikendice; track a.idV){
+      @if(a.mesto.includes(mesto)){
+        <tr>
+            <td>{{a.naziv}}</td>
+            <td>{{a.mesto}}</td>
+            <td>{{a.usluge}}</td>
+            <td>{{a.ocena}}</td>
+            <td>{{a.cenovnikProlece}}</td>
+            <td>{{a.cenovnikLeto}}</td>
+            <td>{{a.cenovnikJesen}}</td>
+            <td>{{a.cenovnikZima}}</td>
+            <td>{{a.telefon}}</td>
+            <td>{{a.koordinate}}</td>
+            <td>{{a.vlasnik}}</td>
+        </tr>
+      }
+    }
+    </table>
+}
+@else if(naziv=="" && mesto==""){
+  <p style="color:white">Svi rezultati:</p> 
+<table id="tabela">
+  <tr>
+    <th>Naziv</th>
+    <th>Mesto</th>
+    <th>Usluge</th>
+    <th>Ocena</th>
+    <th>Cena prolece</th>
+    <th>Cena leto</th>
+    <th>Cena jesen</th>
+    <th>Cena zima</th>
+    <th>Kontakt telefon</th>
+    <th>Koordinate</th>
+    <th>Vlasnik</th>
+  </tr>
+  @for(a of vikendice; track a.idV){
+    <tr>
+        <td>{{a.naziv}}</td>
+        <td>{{a.mesto}}</td>
+        <td>{{a.usluge}}</td>
+        <td>{{a.ocena}}</td>
+        <td>{{a.cenovnikProlece}}</td>
+        <td>{{a.cenovnikLeto}}</td>
+        <td>{{a.cenovnikJesen}}</td>
+        <td>{{a.cenovnikZima}}</td>
+        <td>{{a.telefon}}</td>
+        <td>{{a.koordinate}}</td>
+        <td>{{a.vlasnik}}</td>
+    </tr>
+  }
+  
+</table>
+}
+}
+@else {
+    <p>Nema vikendica.</p>
+}
+<br>
+</div>

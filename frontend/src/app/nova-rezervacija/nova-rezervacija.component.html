@@ -1,0 +1,126 @@
+<header>
+    <button class="step-number" style="background-color: bisque;"  (click)="nazadStrana()">←</button>
+</header>
+
+<div id="mydiv">
+  <div class="progress-container">
+    <div class="progress-step" [class.active]="trenutno >= 1" [class.completed]="trenutno > 1" (click)="promeniKorak(1)">
+      <div class="step-number">1</div>
+      <div class="step-label">Vikendica</div>
+    </div>
+    <div class="progress-line" [class.completed]="trenutno > 1"></div>
+    <div class="progress-step" [class.active]="trenutno >= 2" [class.completed]="trenutno > 2" (click)="promeniKorak(2)">
+      <div class="step-number">2</div>
+      <div class="step-label">Datumi</div>
+    </div>
+    <div class="progress-line" [class.completed]="trenutno > 2"></div>
+    <div class="progress-step" [class.active]="trenutno >= 3" [class.completed]="trenutno > 3" (click)="promeniKorak(3)">
+      <div class="step-number">3</div>
+      <div class="step-label">Detalji</div>
+    </div>
+    <div class="progress-line" [class.completed]="trenutno > 3"></div>
+    <div class="progress-step" [class.active]="trenutno >= 4" [class.completed]="trenutno > 4" (click)="promeniKorak(4)">
+      <div class="step-number">4</div>
+      <div class="step-label">Potvrda</div>
+    </div>
+  </div>
+
+  <h2>Nova rezervacija</h2>
+
+  @if(trenutno === 1){
+    <div class="step-content">
+      <h3>Izaberite vikendicu</h3>
+      <div class="vikendica-list">
+        @for(v of vikendice; track v.idV){
+          <div class="vikendica-card" [class.selected]="novaRezervacija.idV === v.idV" (click)="odaberi(v)">
+            <h4>{{v.naziv}}</h4>
+            <p><strong>Mesto:</strong> {{v.mesto}}</p>
+            <p><strong>Usluge:</strong> {{v.usluge}}</p>
+            <div class="prices">
+              <span>Prolece: {{v.cenovnikProlece}} RSD</span>
+              <span>Leto: {{v.cenovnikLeto}} RSD</span>
+              <span>Jesen: {{v.cenovnikJesen}} RSD</span>
+              <span>Zima: {{v.cenovnikZima}} RSD</span>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+
+  @if(trenutno === 2){
+    <div class="step-content">
+      <h3>Izaberite datume i broj gostiju</h3>
+      @if(selectedVikendica){
+        <p class="selected-info">Izabrana vikendica: <strong>{{selectedVikendica.naziv}}</strong> - {{selectedVikendica.mesto}}</p>
+      }
+      <div class="form-group">
+        <label>Datum pocetka:</label>
+        <input type="date" [(ngModel)]="novaRezervacija.datumPocetak">
+      </div>
+      <div class="form-group">
+        <label>Datum kraja:</label>
+        <input type="date" [(ngModel)]="novaRezervacija.datumKraj">
+      </div>
+      <div class="form-group">
+        <label>Broj odraslih:</label>
+        <input type="number" [(ngModel)]="novaRezervacija.brOdraslih" min="1" value="1">
+      </div>
+      <div class="form-group">
+        <label>Broj dece:</label>
+        <input type="number" [(ngModel)]="novaRezervacija.brDece" min="0" value="0">
+      </div>
+    </div>
+  }
+
+  @if(trenutno === 3){
+    <div class="step-content">
+      <h3>Dodatne informacije</h3>
+      <div class="form-group">
+        <label>Broj kreditne kartice:</label>
+        <input type="text" [(ngModel)]="novaRezervacija.kartica" maxlength="16">
+      </div>
+      <div class="form-group">
+        <label>Posebni zahtevi (opciono):</label>
+        <textarea [(ngModel)]="novaRezervacija.zahtevi" max="500" placeholder="Unesite dodatne zahteve"></textarea>
+      </div>
+    </div>
+  }
+  
+  @if(trenutno === 4){
+    <div class="step-content">
+      <h3>Potvrda rezervacije</h3>
+      @if(selectedVikendica){
+        <div class="confirmation-details">
+          <p><strong>Vikendica:</strong> {{selectedVikendica.naziv}}</p>
+          <p><strong>Mesto:</strong> {{selectedVikendica.mesto}}</p>
+          <p><strong>Datum:</strong> {{novaRezervacija.datumPocetak}} do {{novaRezervacija.datumKraj}}</p>
+          <p><strong>Gosti:</strong> {{novaRezervacija.brOdraslih}} odraslih, {{novaRezervacija.brDece}} dece</p>
+          <p><strong>Kartica:</strong> **** **** **** {{novaRezervacija.kartica.slice(-4)}}</p>
+          @if(novaRezervacija.zahtevi){
+            <p><strong>Zahtevi:</strong> {{novaRezervacija.zahtevi}}</p>
+          }
+          <p class="total-price"><strong>Ukupna cena:</strong> {{cena()}} RSD</p>
+        </div>
+      }
+    </div>
+  }
+
+  @if(message){
+    <p [class.error]="message.includes('Greska') || message.includes('Molimo')" 
+       [class.success]="message.includes('uspesno')" 
+       class="message">{{message}}</p>
+  }
+
+  <div class="button-group">
+    @if(trenutno > 1){
+      <button class="btn-secondary" (click)="nazad()">Nazad</button>
+    }
+    @if(trenutno < ukupno){
+      <button class="btn-primary" (click)="sledece()">Sledeće</button>
+    }
+    @if(trenutno === ukupno){
+      <button class="btn-success" (click)="rezervisi()">Potvrdi rezervaciju</button>
+    }
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<body>
+    
+<div id="mydiv" ><br>
+@if(profilnaSlikaUrl){
+    <img [src]="profilnaSlikaUrl" width="100px">
+}
+@else{
+    <img src="user.png" width="100px">
+}
+
+<h3>Osnovni podaci:</h3>
+Ime: {{ulogovan.ime}}<br>
+Prezime: {{ulogovan.prezime}}<br>
+Adresa: {{ulogovan.adresa}}<br>
+Mejl: {{ulogovan.mejl}}<br>
+Broj kreditne kartice: {{ulogovan.broj_kreditne_kartice}}<br>
+Kontakt telefon: {{ulogovan.kontakt_telefon}}<br><br>
+<button (click)="azurirajPodatke()">Azuriraj podatke</button>
+</div>
+
+
+<header id="menidiv">
+<h5>Meni</h5>
+<pre>
+<button (click)="vidiProfil()" style="background-color: bisque; width: 100px;">Profil</button>     <button (click)="vidiVikendice()" style="background-color: bisque; width: 100px;">Vikendice</button>         <button style="background-color: bisque; width: 100px;" (click)="vidiRezervacije()">Rezervacije</button>           <button (click)="odjaviSe()" style="background-color:bisque; width: 100px;">Odjava</button>
+</pre>
+</header>
+
+</body>

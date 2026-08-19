@@ -1,0 +1,39 @@
+<div id="mydiv">
+<h3>Informacije o vikendici</h3>
+<tr><td>Naziv:</td><td>{{vikendica.naziv}}</td></tr>
+<tr><td>Mesto:</td><td>{{vikendica.mesto}}</td></tr>
+<tr><td>Usluge:</td><td>{{vikendica.usluge}}</td></tr>
+<tr><td>Cenovnik prolece:</td><td>{{vikendica.cenovnikProlece}}</td></tr>
+<tr><td>Cenovnik leto:</td><td>{{vikendica.cenovnikLeto}}</td></tr>
+<tr><td>Cenovnik jesen:</td><td>{{vikendica.cenovnikJesen}}</td></tr>
+<tr><td>Cenovnik zima:</td><td>{{vikendica.cenovnikZima}}</td></tr>
+<tr><td>Kontakt telefon:</td><td>{{vikendica.telefon}}</td></tr>
+<tr><td>Koordinate:</td><td>{{vikendica.koordinate}}</td></tr>
+<tr><td>Vlasnik:</td><td>{{vikendica.vlasnik}}</td></tr>
+<tr><td>Ocena:</td><td>{{vikendica.ocena.toFixed(1)}}</td></tr>
+</div>
+
+<div id="gallerydiv">
+<h4 style="margin-top: 20px;">Slike vikendice:</h4>
+<div class="gallery-container">
+  <div class="gallery-item" *ngFor="let slika of slike; let i = index">
+    <img [src]="slika" 
+         [alt]="'Slika vikendice ' + vikendica.naziv" 
+         class="gallery-image"
+         (click)="otvoriSliku(slika)">
+    <span class="image-counter">
+      {{i + 1}}/{{slike.length}}
+    </span>
+  </div>
+  <div *ngIf="slike.length === 0" class="no-images">
+    Nema dostupnih slika za ovu vikendicu
+  </div>
+</div>
+</div>
+
+<header id="menidiv">
+<h5>Meni</h5>
+<pre>
+<button (click)="vidiProfil()" style="background-color: bisque; width: 100px;">Profil</button>     <button (click)="vidiVikendice()" style="background-color: bisque; width: 100px;">Vikendice</button>         <button (click)="vidiRezervacije()" style="background-color: bisque; width: 100px;">Rezervacije</button>           <button (click)="odjaviSe()" style="background-color:bisque; width: 100px;">Odjava</button>
+</pre>
+</header>

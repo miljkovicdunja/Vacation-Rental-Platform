@@ -1,0 +1,72 @@
+<header>
+    <button style="border-radius:50%; width:40px; height:40px; background-color: bisque; color:black" (click)="nazad()">←</button>
+</header>
+<h1 style="text-align: center; color:white">Svi korisnici</h1>
+@if(korisnici.length > 0){
+    <table id="tabela">
+      <tr>
+        <th>Korisnicko ime</th>
+        <th>Ime</th>
+        <th>Prezime</th>
+        <th>Pol</th>
+        <th>Mejl</th>
+        <th>Tip</th>
+        <th>Kontakt telefon</th>
+        <th>Broj kreditne kartice</th>
+
+      </tr>
+      @for(a of korisnici; track a.kor_ime){
+        <tr>
+          <td>{{ a.kor_ime }}</td>
+          <td>{{ a.ime }}</td>
+            <td>{{ a.prezime }}</td>
+          <td>{{ a.pol }}</td>
+          <td>{{ a.mejl }}</td>
+          <td>{{ a.tip }}</td>
+          <td>{{ a.kontakt_telefon }}</td>
+          <td>{{ a.broj_kreditne_kartice }}</td>
+          <td><button style="background-color: burlywood;" (click)="azurirajKorisnika(a)">Azuriraj</button></td>
+          <td><button style="background-color: burlywood;" (click)="obrisiKorisnika(a)">Obrisi</button></td>
+          <td><button style="background-color: burlywood;" (click)="deaktivirajKorisnika(a)">Deaktiviraj</button></td>
+        </tr>
+      }
+    </table>
+}
+@else{
+    <p style="color:white">Nemate korisnika.</p>
+}
+
+
+<h1 style="text-align: center; color:white; margin-top:450px;">Korisnici na cekanju</h1>
+@if(cekanje.length > 0){
+    <table id="tabela2">
+      <tr>
+        <th>Korisnicko ime</th>
+        <th>Ime</th>
+        <th>Prezime</th>
+        <th>Pol</th>
+        <th>Mejl</th>
+        <th>Tip</th>
+        <th>Kontakt telefon</th>
+        <th>Broj kreditne kartice</th>
+
+      </tr>
+      @for(a of cekanje; track a.kor_ime){
+        <tr>
+          <td>{{ a.kor_ime }}</td>
+          <td>{{ a.ime }}</td>
+            <td>{{ a.prezime }}</td>
+          <td>{{ a.pol }}</td>
+          <td>{{ a.mejl }}</td>
+          <td>{{ a.tip }}</td>
+          <td>{{ a.kontakt_telefon }}</td>
+          <td>{{ a.broj_kreditne_kartice }}</td>
+          <td><button style="background-color: burlywood;" (click)="prihvati(a)">Prihvati</button></td>
+          <td><button style="background-color: burlywood;" (click)="odbij(a)">Odbij</button></td>
+        </tr>
+      }
+    </table>
+}
+@else{
+    <p style="color:white">Nema korisnika na cekanju.</p>
+}

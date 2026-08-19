@@ -1,0 +1,30 @@
+
+#tabela{
+    top:32%;
+    left:15%;
+    width:70em;
+    position: absolute;
+    background-image: url("/vikendica2.jpg");
+    backdrop-filter: blur(30px);
+    color:white;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+th,td{
+    border: 1px solid black;
+}
+#menidiv{
+    position:absolute;
+    text-align: center;
+    top: 12%;
+    left: 35%;
+    width: 50%;
+    height:8em;
+    margin-top: -5em; 
+    margin-left: -10em; 
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-image: url("/vikendica2.jpg");   
+    backdrop-filter: blur(20px);
+    color: white;
+}

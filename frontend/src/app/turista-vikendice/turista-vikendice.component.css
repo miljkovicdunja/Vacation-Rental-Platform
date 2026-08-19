@@ -1,0 +1,63 @@
+#menidiv{
+    position:absolute;
+    text-align: center;
+    top: 12%;
+    left: 35%;
+    width: 50%;
+    height:8em;
+    margin-top: -5em; 
+    margin-left: -10em; 
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-image: url("/vikendica2.jpg");   
+    backdrop-filter: blur(20px);
+    color: white;
+}
+#mydiv{
+    position:absolute;
+    text-align: center;
+    border-radius: 50px;
+    top: 40%;
+    left: 50%;
+    width:30em;
+    height:15em;
+    margin-top: -9em; 
+    margin-left: -15em; 
+    border: 1px solid #ccc;
+    background-image: url("/vikendica2.jpg");   
+    backdrop-filter: blur(20px);
+    color: white;
+}
+#tabela{
+    top:120%;
+    left:-60%;
+    width:70em;
+    position: absolute;
+    background-color: bisque;
+    border: 1px solid black;
+    border-radius: 10px;
+    color:black;
+}
+th,td{
+    border: 1px solid black;
+}
+.zvezdice {
+  display: inline-flex;
+  font-size: 24px;
+  color: lightgray;
+  position: relative;
+}
+
+.zvezda {
+  position: relative;
+  display: inline-block;
+}
+
+.zvezda .unutra {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: gold;
+  overflow: hidden;
+  white-space: nowrap;
+}

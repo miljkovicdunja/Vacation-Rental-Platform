@@ -1,0 +1,47 @@
+<h1 style="text-align: center; color:white; margin-top:10%;">Moje vikendice</h1>
+@if(vikendice.length > 0){
+    <table id="tabela">
+      <tr>
+        <th>Naziv</th>
+        <th>Mesto</th>
+        <th>Usluge</th>
+        <th>Ocena</th>
+        <th>Cena prolece</th>
+        <th>Cena leto</th>
+        <th>Cena jesen</th>
+        <th>Cena zima</th>
+        <th>Kontakt telefon</th>
+        <th>Koordinate</th>
+      </tr>
+      @for(a of vikendice; track a.idV){
+          <tr>
+              <td>{{a.naziv}}</td>
+              <td>{{a.mesto}}</td>
+              <td>{{a.usluge}}</td>
+              <td>{{a.ocena}}</td>
+              <td>{{a.cenovnikProlece}}</td>
+              <td>{{a.cenovnikLeto}}</td>
+              <td>{{a.cenovnikJesen}}</td>
+              <td>{{a.cenovnikZima}}</td>
+              <td>{{a.telefon}}</td>
+              <td>{{a.koordinate}}</td>
+              <td><button style="height: 50px; background-color: transparent;" (click)="azuriraj(a)">Uredi</button></td>
+              <td><button style="height: 50px; background-color: transparent;" (click)="obrisiVikendicu(a)">Obrisi</button></td>
+          </tr>
+      }
+    </table>
+}
+@else{
+    <p style="color:white">Nemate dodate vikendice.</p>
+}
+
+
+<button style="margin-left:45%; background-color: burlywood;" (click)="dodajNovuVikendicu()">Dodaj vikendicu</button>
+
+
+<header id="menidiv">
+<h5>Meni</h5>
+<pre>
+<button (click)="vidiProfil()" style="background-color: bisque; width: 100px;">Profil</button>     <button (click)="vidiVikendice()" style="background-color: bisque; width: 100px;">Vikendice</button>         <button style="background-color: bisque; width: 100px;" (click)="vidiRezervacije()">Rezervacije</button>           <button (click)="odjaviSe()" style="background-color:bisque; width: 100px;">Odjava</button>
+</pre>
+</header>

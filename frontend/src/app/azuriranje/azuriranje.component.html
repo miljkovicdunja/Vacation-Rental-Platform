@@ -1,0 +1,31 @@
+<div id="mydiv">
+@if(ulogovan.tip=='administrator'){
+    <h3>Podaci korisnika:</h3>
+}
+@else{
+<h3>Vasi podaci:</h3>
+}
+    Ime: {{ulogovan.ime}}<br>
+Prezime: {{ulogovan.prezime}}<br>
+Mejl: {{ulogovan.mejl}}<br>
+Broj kreditne kartice: {{ulogovan.broj_kreditne_kartice}}<br>
+Kontakt telefon: {{ulogovan.kontakt_telefon}}<br><br>
+<br><br>
+Novo ime: <input type="text" [(ngModel)]="ulogovan.ime"><br><br>
+Novo prezime: <input type="text" [(ngModel)]="ulogovan.prezime"><br><br>
+Nova adresa: <input type="text" [(ngModel)]="ulogovan.adresa"><br><br>
+Novi mejl: <input type="text" [(ngModel)]="ulogovan.mejl"><br><br>
+Novi broj kreditne kartice: <input type="number" [(ngModel)]="ulogovan.broj_kreditne_kartice"><br><br>
+Novi kontakt telefon: <input type="text" [(ngModel)]="ulogovan.kontakt_telefon"><br><br>
+Nova profilna slika: <input type="file" (change)="onFileSelected($event)" accept="image/*"><br>
+<br>
+<button (click)="sacuvajIzmene()">Sacuvaj izmene</button>
+</div>
+
+
+<header id="menidiv">
+<h5>Meni</h5>
+<pre>
+<button (click)="vidiProfil()" style="background-color: bisque; width: 100px;">Profil</button>     <button (click)="vidiVikendice()" style="background-color: bisque; width: 100px;">Vikendice</button>         <button (click)="vidiRezervacije()" style="background-color: bisque; width: 100px;">Rezervacije</button>           <button (click)="odjaviSe()" style="background-color: bisque; width: 100px;">Odjava</button>
+</pre>
+</header>

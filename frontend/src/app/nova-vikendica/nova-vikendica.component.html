@@ -1,0 +1,23 @@
+
+<div id="mydiv">
+      <h2>Dodaj novu vikendicu</h2>
+        Naziv: <input type="text" [(ngModel)]="novaVikendica.naziv"><br><br>
+        Mesto: <input type="text" [(ngModel)]="novaVikendica.mesto"><br><br>
+        Usluge: <input type="text" [(ngModel)]="novaVikendica.usluge"><br><br>
+        Cena prolece: <input type="text" [(ngModel)]="novaVikendica.cenovnikProlece"><br><br>
+        Cena leto: <input type="text" [(ngModel)]="novaVikendica.cenovnikLeto"><br><br>
+        Cena jesen: <input type="text" [(ngModel)]="novaVikendica.cenovnikJesen"><br><br>
+        Cena zima: <input type="text" [(ngModel)]="novaVikendica.cenovnikZima"><br><br>
+        Koordinate: <input type="text" [(ngModel)]="novaVikendica.koordinate"><br><br>
+        Slike: <input type="file" (change)="onFilesSelected($event)" multiple accept="image/*"><br><br>
+        <span style="color:red">{{message}}</span>
+        <button (click)="dodajVikendicu()">Dodaj vikendicu</button>
+</div>
+
+
+<header id="menidiv">
+<h5>Meni</h5>
+<pre>
+<button (click)="vidiProfil()" style="background-color: bisque; width: 100px;">Profil</button>     <button (click)="vidiVikendice()" style="background-color: bisque; width: 100px;">Vikendice</button>         <button style="background-color: bisque; width: 100px;" (click)="vidiRezervacije()">Rezervacije</button>           <button (click)="odjaviSe()" style="background-color:bisque; width: 100px;">Odjava</button>
+</pre>
+</header>

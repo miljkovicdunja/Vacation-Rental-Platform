@@ -1,0 +1,60 @@
+<div id="mydiv">
+<h3>Vasi podaci:</h3>
+    Naziv: {{vikendicaZaIzmenu.naziv}}<br>
+Mesto: {{vikendicaZaIzmenu.mesto}}<br>
+Ugluge usluge: {{vikendicaZaIzmenu.usluge}}<br>
+Cenovnik prolece: {{vikendicaZaIzmenu.cenovnikProlece}}<br>
+Cenovnik leto: {{vikendicaZaIzmenu.cenovnikLeto}}<br>
+Cenovnik jesen: {{vikendicaZaIzmenu.cenovnikJesen}}<br>
+Cenovnik zima: {{vikendicaZaIzmenu.cenovnikZima}}<br>
+Kontakt telefon: {{vikendicaZaIzmenu.telefon}}<br>
+Koordinate: {{vikendicaZaIzmenu.koordinate}}<br><br>
+
+<h4>Trenutne slike vikendice:</h4>
+<div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;">
+  <div *ngFor="let imageUrl of imageUrls; let i = index" style="position: relative; display: inline-block;">
+    <img [src]="imageUrl" alt="Slika vikendice" style="width: 150px; height: 150px; object-fit: cover; border: 2px solid #ccc; border-radius: 5px;">
+    <button (click)="ukloniPostojecuSliku(i)" 
+            style="position: absolute; top: 5px; right: 5px; background: red; color: white; border: none; border-radius: 50%; width: 25px; height: 25px; cursor: pointer; font-weight: bold;">×</button>
+  </div>
+  <div *ngIf="imageUrls.length === 0" style="color: #888; font-style: italic;">
+    Nema prethodno sačuvanih slika
+  </div>
+</div>
+
+<br>
+<div id="mydiv2">
+<h3>Izmenite podatke vikendice:</h3>
+Novo ime vikendice: <input type="text" [(ngModel)]="vikendicaZaIzmenu.naziv"><br><br>
+Novo mesto: <input type="text" [(ngModel)]="vikendicaZaIzmenu.mesto"><br><br>
+Nove usluge: <input type="text" [(ngModel)]="vikendicaZaIzmenu.usluge"><br><br>
+Nova cena prolece: <input type="text" [(ngModel)]="vikendicaZaIzmenu.cenovnikProlece"><br><br>
+Nova cena leto: <input type="text" [(ngModel)]="vikendicaZaIzmenu.cenovnikLeto"><br><br>
+Nova cena jesen: <input type="text" [(ngModel)]="vikendicaZaIzmenu.cenovnikJesen"><br><br>
+Nova cena zima: <input type="text" [(ngModel)]="vikendicaZaIzmenu.cenovnikZima"><br><br>
+Novi kontakt telefon: <input type="text" [(ngModel)]="vikendicaZaIzmenu.telefon"><br><br>
+Nove koordinate: <input type="text" [(ngModel)]="vikendicaZaIzmenu.koordinate"><br><br>
+Nove slike (unesite putanju do slike): <input type="file" (change)="onFilesSelected($event)" multiple accept="image/*"><br><br>
+
+<div *ngIf="previewUrls.length > 0">
+  <h4>Nove slike (pregled pre čuvanja):</h4>
+  <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;">
+    <div *ngFor="let preview of previewUrls; let i = index" style="position: relative; display: inline-block;">
+      <img [src]="preview" alt="Nova slika" style="width: 150px; height: 150px; object-fit: cover; border: 2px solid #4CAF50; border-radius: 5px;">
+      <button (click)="ukloniNovuSliku(i)" 
+              style="position: absolute; top: 5px; right: 5px; background: red; color: white; border: none; border-radius: 50%; width: 25px; height: 25px; cursor: pointer; font-weight: bold;">×</button>
+    </div>
+  </div>
+</div>
+
+<button (click)="sacuvajIzmene()">Sacuvaj izmene</button>
+</div>
+</div>
+
+
+<header id="menidiv">
+<h5>Meni</h5>
+<pre>
+<button (click)="vidiProfil()" style="background-color: bisque; width: 100px;">Profil</button>     <button (click)="vidiVikendice()" style="background-color: bisque; width: 100px;">Vikendice</button>         <button (click)="vidiRezervacije()" style="background-color: bisque; width: 100px;">Rezervacije</button>           <button (click)="odjaviSe()" style="background-color: bisque; width: 100px;">Odjava</button>
+</pre>
+</header>
